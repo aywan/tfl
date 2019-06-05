@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  web:
+    links:
+      - php
+    depends_on:
+      - php
+
+  php:
+    links:
+      - db
+
+  db:
+
