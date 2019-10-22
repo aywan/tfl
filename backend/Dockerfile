@@ -1,7 +1,7 @@
 ##
 ## Production build.
 ##
-FROM php:7.2.15-fpm-alpine3.9 as prod
+FROM php:7.3.6-fpm-alpine3.9 as prod
 
 ARG XHPROF_VER=v2.0.2
 ARG MEMCACHED_VER=3.1.3
@@ -70,7 +70,7 @@ WORKDIR /code
 ##
 FROM prod as dev
 
-ARG XDEBUG_VER=2.6.1
+ARG XDEBUG_VER=2.7.2
 
 RUN docker-php-source extract \
     && apk add --no-cache --update --virtual .phpize-deps $PHPIZE_DEPS \

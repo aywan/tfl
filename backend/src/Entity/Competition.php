@@ -8,6 +8,7 @@ use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompetitionRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Competition
 {
@@ -34,10 +35,12 @@ class Competition
     private $updateAt;
 
     /**
-     * @var UuidInterface
-     * @ORM\Column(type="uuid")
+     * @var null|Category
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category")
+     * @ORM\JoinColumn(name="category_id", nullable=false)
      */
-    private $categoryId;
+    private $category;
 
     /**
      * @var \DateTimeInterface
@@ -152,25 +155,25 @@ class Competition
     }
 
     /**
-     * @return UuidInterface
+     * @return null|Category
      */
-    public function getCategoryId(): UuidInterface
+    public function getCategory(): ?Category
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
     /**
-     * @param UuidInterface $categoryId
+     * @param Category $category
      */
-    public function setCategoryId(UuidInterface $categoryId): void
+    public function setCategory(Category $category): void
     {
-        $this->categoryId = $categoryId;
+        $this->category = $category;
     }
 
     /**
-     * @return float
+     * @return null|float
      */
-    public function getWeight(): float
+    public function getWeight(): ?float
     {
         return $this->weight;
     }
@@ -181,5 +184,18 @@ class Competition
     public function setWeight(float $weight): void
     {
         $this->weight = $weight;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function updatedTimestamps(): void
+    {
+        $this->updateAt = new \DateTime();
+
+        if ($this->createAt === null) {
+            $this->createAt = new \DateTime();
+        }
     }
 }

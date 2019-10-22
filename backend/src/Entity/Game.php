@@ -7,9 +7,9 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SetRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
  */
-class Set
+class Game
 {
     /**
      * @var UuidInterface

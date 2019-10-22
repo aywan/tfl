@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\Set;
+use App\Entity\Game;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Set|null find($id, $lockMode = null, $lockVersion = null)
- * @method Set|null findOneBy(array $criteria, array $orderBy = null)
- * @method Set[]    findAll()
- * @method Set[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Game|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Game|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Game[]    findAll()
+ * @method Game[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SetRepository extends ServiceEntityRepository
+class GameRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Set::class);
+        parent::__construct($registry, Game::class);
     }
 
     // /**
